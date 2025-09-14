@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css'
 export default function Home(){
   const [materials, setMaterials] = useState([])
   const [q, setQ] = useState('')
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(()=>{
     const saved = typeof window !== 'undefined' ? localStorage.getItem('materials') : null
@@ -32,13 +33,21 @@ export default function Home(){
         <header className={styles.topRow}>
           <div className={styles.logo}>LOGO</div>
 
+          <button
+            className={styles.hamburger}
+            aria-label={mobileOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={mobileOpen}
+            onClick={()=>setMobileOpen(v=>!v)}
+          >
+            <span className={styles.hamburgerBox} />
+          </button>
+
           <div className={styles.searchWrap}>
             <input aria-label="Recherche" placeholder="" className={styles.searchInput} value={q} onChange={e=>setQ(e.target.value)} />
           </div>
 
           <button className={styles.connexion}>CONNEXION</button>
         </header>
-
         <nav className={styles.menuRow}>
           <div className={styles.menuItem}>ACCUEIL</div>
           <div className={`${styles.menuItem} ${styles.explorer}`}>EXPLORER
@@ -57,6 +66,28 @@ export default function Home(){
           <div className={styles.menuItem}>PARAMETRES</div>
           <div className={styles.menuItem}>CONTACT</div>
         </nav>
+
+        {/* Mobile menu overlay */}
+        <div className={`${styles.mobileMenu} ${mobileOpen ? styles.open : ''}`} role="dialog" aria-label="Menu principal">
+          <div className={styles.mobileMenuInner}>
+            <button className={styles.mobileClose} onClick={()=>setMobileOpen(false)} aria-label="Fermer">×</button>
+            <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>ACCUEIL</a>
+            <details className={styles.mobileDetails}>
+              <summary>EXPLORER</summary>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>FILMS</a>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>SERIES</a>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>MUSIQUES</a>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>DESSINS ANIMES</a>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>DOCUMENTAIRES</a>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>BANDE DESSINEES</a>
+              <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>OUVRAGES</a>
+            </details>
+            <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>COMMUNAUTE</a>
+            <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>PROFIL</a>
+            <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>PARAMETRES</a>
+            <a className={styles.mobileLink} href="#" onClick={()=>setMobileOpen(false)}>CONTACT</a>
+          </div>
+        </div>
 
         <section className={styles.hero}>
 
