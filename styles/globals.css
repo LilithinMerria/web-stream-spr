@@ -1,0 +1,31 @@
+:root{
+  --primary:#0d47a1;
+  --accent:#1976d2;
+  --black:#000;
+  --dark:#0b0b0b;
+  --blue:#0b57d0;
+  --accent-2:#1857d6;
+}
+html,body,#__next{height:100%;}
+body{font-family: 'Helvetica Neue', Arial, sans-serif;margin:0;background:linear-gradient(180deg,#081226 0%, #0b3b66 60%);color:#fff}
+
+.container{max-width:1200px;margin:0 auto;padding:16px}
+.hero{border-radius:8px;padding:40px 20px; margin-bottom:24px}
+.searchRow{display:flex;gap:12px;align-items:center}
+.searchInput{flex:1;padding:12px;border-radius:6px;border:0}
+
+.materialsGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}
+.materialCard{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;color:#fff}
+.materialCover{height:190px;background:#ddd;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.materialInfo{padding-top:8px}
+
+.navBar{display:flex;align-items:center;gap:16px;padding:12px 0}
+.navItem{padding:8px 12px;background:rgba(0,0,0,0.25);border-radius:4px;cursor:pointer}
+.explorerMenu{position:relative}
+.explorerDropdown{position:absolute;top:100%;left:0;background:var(--accent);padding:8px;border-radius:4px;display:none}
+.explorerMenu:hover .explorerDropdown{display:block}
+
+@media(max-width:600px){
+  .hero{padding:20px}
+  .materialCover{height:140px}
+}
